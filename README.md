@@ -5,6 +5,7 @@
 ## Ссылки
 
 - Репозиторий: https://github.com/San589-stack/zakrivayuschiy-teg-f
+- Ссылка на сайт: https://san589-stack.github.io/zakrivayuschiy-teg-f/
 
 ## Что реализовано
 
