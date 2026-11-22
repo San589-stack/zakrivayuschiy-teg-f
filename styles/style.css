@@ -1,16 +1,313 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-*/
-
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  background-color: var(--page-background-color);
+  background-image: var(--page-background-image);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--color-text);
+  font-family: var(--font-family-main);
+  font-variation-settings: 'wght' var(--font-weight-card-text);
+}
+
+.content-block {
+  inline-size: var(--content-width);
+  margin-inline: auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--header-gap);
+  margin-block-start: var(--page-offset-top);
+  padding-block: var(--header-padding-block);
+  padding-inline: var(--header-padding-inline);
+  border: 2px solid var(--color-accent);
+  background-color: var(--color-background);
+  font-family: var(--font-family-accent);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.header__logo {
+  font-size: var(--header-logo-size);
+}
+
+.header__title {
+  font-size: var(--header-title-size);
+  font-weight: inherit;
+}
+
+.cards {
+  display: grid;
+  gap: var(--cards-gap);
+  margin-block-start: var(--cards-offset-top);
+}
+
+.card {
+  border: 2px solid var(--color-accent);
+  background-color: var(--color-background);
+}
+
+.card__title {
+  padding: var(--card-title-padding-block) var(--card-title-padding-inline);
+  border-block-end: 2px solid var(--color-accent);
+  font-size: var(--card-title-size);
+  font-variation-settings: 'wght' var(--font-weight-card-title);
+  line-height: var(--card-title-line-height);
+}
+
+.card__media {
+  position: relative;
+  border-block-end: 2px solid var(--color-accent);
+}
+
+.card__image {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: pixelated;
+}
+
+.card__label {
+  position: absolute;
+  inset-block-start: var(--card-label-offset-block);
+  inset-inline-end: var(--card-label-offset-inline);
+  font-family: var(--font-family-accent);
+  font-size: var(--font-size-accent);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-label-text);
+  opacity: 0.5;
+  mix-blend-mode: hard-light;
+  text-shadow:
+    -1px -1px 0 var(--color-label-stroke),
+    1px -1px 0 var(--color-label-stroke),
+    -1px 1px 0 var(--color-label-stroke),
+    1px 1px 0 var(--color-label-stroke);
+}
+
+@supports ((-webkit-text-stroke: 1px red) or (text-stroke: 1px red)) {
+  .card__label {
+    -webkit-text-stroke: 2px var(--color-label-stroke);
+    text-stroke: 2px var(--color-label-stroke);
+    paint-order: stroke fill;
+    text-shadow: none;
+  }
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+  padding: var(--card-padding);
+}
+
+.card__text {
+  font-size: var(--card-text-size);
+  line-height: var(--card-text-line-height);
+}
+
+.card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--card-actions-gap);
+}
+
+.card__icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--heart-button-width);
+  block-size: var(--control-size);
+  margin-inline: calc(
+    (var(--heart-icon-width) - var(--heart-button-width)) / 2
+  );
+  padding: 0;
+  border: 2px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.card__icon-button:focus {
+  outline: none;
+}
+
+.card__icon-button:focus-visible {
+  border-color: var(--color-accent);
+}
+
+.like-icon {
+  flex-shrink: 0;
+  inline-size: var(--heart-size);
+  block-size: auto;
+  overflow: visible;
+  shape-rendering: crispEdges;
+  transform-origin: center;
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-block-size: var(--control-size);
+  padding-inline: var(--button-padding-inline);
+  border: 2px solid var(--color-accent);
+  background-color: var(--color-button-background);
+  font-family: var(--font-family-accent);
+  font-size: var(--font-size-accent);
+  line-height: 1.4;
+  text-align: center;
+  cursor: pointer;
+  isolation: isolate;
+  overflow: hidden;
+  box-shadow: 0 0 0 0 transparent;
+  transition: box-shadow 0.3s ease;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-button-hover);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out;
+}
+
+.button:hover::before {
+  transform: translateX(0);
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  box-shadow: 2px 2px 0 0 var(--color-accent);
+}
+
+.button__text {
+  position: relative;
+  z-index: 1;
+  color: var(--color-button-text);
+  mix-blend-mode: difference;
+}
+
+.button__icon {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  inline-size: var(--button-icon-size);
+  block-size: var(--button-icon-size);
+  fill: var(--color-button-text);
+  mix-blend-mode: difference;
+  shape-rendering: crispEdges;
+}
+
+.card__like-button {
+  inline-size: var(--like-button-width);
+  padding-inline: 0;
+}
+
+.card__image_mood_calm {
+  filter: saturate(0.9) contrast(1.05) brightness(1.02);
+}
+
+.card__image_mood_excitement {
+  filter: saturate(0.4) brightness(0.9) contrast(0.95);
+}
+
+.card__image_mood_confusion {
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.card__image_mood_insight {
+  filter: brightness(1.05) saturate(1.1);
+}
+
+.card__image_mood_fatigue {
+  filter: sepia(0.2) saturate(1.2) contrast(1.05);
+}
+
+.card__image_mood_anxiety {
+  filter: sepia(0.15) contrast(1.1) brightness(0.95);
+}
+
+.card__image_mood_delight {
+  filter: saturate(1.25) brightness(1.05);
+}
+
+.card__image_mood_pride {
+  filter: contrast(1.1) brightness(1.03);
+}
+
+.save-button {
+  display: flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  margin-block: var(--save-button-offset-top) var(--save-button-offset-bottom);
+  margin-inline: auto;
+  padding-block: var(--save-button-padding-block);
+  padding-inline: var(--save-button-padding-inline);
+  line-height: 1;
+}
+
+.dialog {
+  display: none;
+  inline-size: var(--dialog-width);
+  max-inline-size: 100%;
+  padding: var(--dialog-padding-block) var(--dialog-padding-inline);
+  border: 2px solid var(--color-accent);
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+.dialog[open] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--dialog-row-gap) var(--dialog-column-gap);
+}
+
+.dialog::backdrop {
+  background-color: var(--color-backdrop);
+}
+
+.dialog__icon {
+  inline-size: var(--dialog-icon-size);
+  block-size: var(--dialog-icon-size);
+  fill: var(--color-accent);
+  shape-rendering: crispEdges;
+}
+
+.dialog__text {
+  max-inline-size: var(--dialog-text-width);
+  font-family: var(--font-family-accent);
+  font-size: var(--font-size-accent);
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.dialog__form {
+  grid-column: 1 / -1;
+}
+
+.dialog__button {
+  display: flex;
+  inline-size: 100%;
+}
+
+@media (width <= 375px) {
+  .save-button {
+    flex-direction: column;
+  }
 }

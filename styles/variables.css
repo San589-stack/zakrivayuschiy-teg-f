@@ -1,1 +1,76 @@
-/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+:root {
+  --font-family-main: 'Inter', Arial, sans-serif;
+  --font-family-accent: 'Press Start 2P', 'Courier New', monospace;
+  --font-weight-card-text: 400;
+  --font-weight-card-title: 785;
+  --font-size-accent: 14px;
+
+  --color-text: #000;
+  --color-background: #fff;
+  --color-accent: #000;
+  --color-contour: #000;
+  --color-animation-fill: #f00;
+  --color-button-text: #fff;
+  --color-button-background: #fff;
+  --color-button-hover: #000;
+  --color-label-text: #000;
+  --color-label-stroke: #fff;
+  --color-backdrop: rgb(0 0 0 / 75%);
+
+  --page-background-color: #e7e7e7;
+  --page-background-image:
+    repeating-linear-gradient(to right, #d3d3d3 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(to bottom, #d3d3d3 0 2px, transparent 2px 4px),
+    linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
+
+  --content-width: clamp(320px, 100%, 700px);
+  --page-offset-top: 100px;
+  --header-padding-block: clamp(120px, 110.8px + 2.46vw, 128px);
+  --header-padding-inline: clamp(14px, 32.77vw - 108.9px, 120.5px);
+  --header-gap: 20px;
+  --header-logo-size: clamp(49px, 30.5px + 4.92vw, 65px);
+  --header-title-size: clamp(14px, 3.6px + 2.77vw, 23px);
+  --control-size: 38px;
+  --button-padding-inline: 17px;
+  --button-icon-size: 21px;
+  --save-button-offset-top: 50px;
+  --save-button-offset-bottom: 100px;
+  --save-button-padding-block: 15px;
+  --save-button-padding-inline: 18px;
+  --like-button-width: 130px;
+  --heart-button-width: 38px;
+  --heart-icon-width: 27px;
+  --heart-size: 39px;
+  --card-actions-gap: 12px;
+  --cards-offset-top: 100px;
+  --cards-gap: 50px;
+  --card-padding: 25px;
+  --card-gap: 25px;
+  --card-title-padding-block: 4px;
+  --card-title-padding-inline: 10px;
+  --card-title-size: 18px;
+  --card-title-line-height: 1.21;
+  --card-label-offset-block: 25px;
+  --card-label-offset-inline: 25px;
+  --card-text-size: 18px;
+  --card-text-line-height: 1.17;
+  --dialog-width: 353px;
+  --dialog-padding-block: 28px;
+  --dialog-padding-inline: 28px;
+  --dialog-icon-size: 28px;
+  --dialog-column-gap: 20px;
+  --dialog-row-gap: 30px;
+  --dialog-text-width: 234px;
+}
+
+@media (width <= 375px) {
+  :root {
+    --header-logo-size: calc((100vw - 32px) / 7);
+    --header-title-size: calc((100vw - 32px) / 24.5);
+    --dialog-width: 341px;
+    --dialog-padding-inline: 38px;
+    --dialog-icon-size: 39px;
+    --dialog-column-gap: 12px;
+    --button-icon-size: 28px;
+  }
+}
